@@ -19,6 +19,7 @@ def get_round_score(round):
     # print(self_score, win_score)
     return self_score + win_score
 
+
 def get_tournament_score(tournament):
     total_score = 0
     for round in tournament:
