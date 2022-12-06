@@ -61,7 +61,7 @@ def execute(moves, stacks):
 
         # print(n_items, origin, dest)
 
-        for n in range(n_items-1):
+        for n in range(n_items):
             obj = origin.pop()
             dest.append(obj)
             print(stacks)
@@ -69,9 +69,26 @@ def execute(moves, stacks):
     return stacks
 
 
+def execute2(moves, stacks):
+    for move in moves:
+        print(" -------- new move --------")
+        n_items = int(move[0])
+        origin = stacks[int(move[1])-1]
+        dest = stacks[int(move[2])-1]
+
+        # print(n_items, origin, dest)
+
+        for n in range(n_items):
+            obj = origin.pop(-n_items + n)
+            dest.append(obj)
+            print(stacks)
+
+    return stacks
+
+
 def main():
-    with open('05test.txt') as f:
-    # with open('05input.txt') as f:
+    # with open('05test.txt') as f:
+    with open('05input.txt') as f:
         lines = f.readlines()
     # print(lines)
 
@@ -81,10 +98,13 @@ def main():
     moves = create_move_list(lines)
     print(moves)
 
-    result = execute(moves, stacks)
+    final_stack_state = execute2(moves, stacks)
+    result = []
+    for stack in final_stack_state:
+        if len(stack)!= 0:
+            result += stack[-1]
 
-
-
+    print(result)
 
 
 
